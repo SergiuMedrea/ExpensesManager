@@ -44,7 +44,7 @@ public class UserController {
     }
 
     @DeleteMapping("/deleteUserById/{id}")
-    public ResponseEntity<HttpStatus> deleteUserById(long id) {
+    public ResponseEntity<HttpStatus> deleteUserById(@PathVariable Long id) {
         userRepo.deleteById(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
@@ -62,9 +62,9 @@ public class UserController {
 
         if(oldUserData.isPresent()) {
             User userObj = oldUserData.get();
-//            userObj.setName(user.getName());
-//            userObj.setEmail(user.getEmail());
-//            userObj.setPassword(user.getPassword());
+            userObj.setName(user.getName());
+            userObj.setEmail(user.getEmail());
+            userObj.setPassword(user.getPassword());
             User userData = userRepo.save(userObj);
             return new ResponseEntity<>(userData, HttpStatus.OK);
         }

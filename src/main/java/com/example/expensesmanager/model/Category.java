@@ -3,24 +3,21 @@ package com.example.expensesmanager.model;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
-@Table(name = "Users")
+@Table(name = "Categories")
 @NoArgsConstructor
 @AllArgsConstructor
 @Setter
 @Getter
 @ToString
-public class User {
+public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
     private String name;
-    private String email;
-    private String password;
-//    private LocalDateTime registrationDate;
-//    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-//    private List<Expense> expenses;
+
+    @ManyToMany(mappedBy = "categories")
+    private List<Expense> expenses;
 }
