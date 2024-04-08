@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-@Controller
+@RestController
 public class IncomeController {
     @Autowired
     private IncomeRepo incomeRepo;

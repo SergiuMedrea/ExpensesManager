@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-@Controller
+@RestController
 public class CategoryController {
     @Autowired
     private CategoryRepo categoryRepo;
