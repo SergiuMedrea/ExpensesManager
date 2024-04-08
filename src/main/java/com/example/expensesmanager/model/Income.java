@@ -18,7 +18,6 @@ public class Income {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private double amount;
-    private LocalDateTime date;
     private String source;
 
     @ManyToOne

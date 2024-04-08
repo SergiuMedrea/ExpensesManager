@@ -19,7 +19,7 @@ public class Expense {
     private long id;
     private double amount;
     private LocalDateTime date;
-    private String description;
+    private String name;
 
     @ManyToOne
     @JoinColumn(name = "user_id")

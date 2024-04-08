@@ -20,7 +20,6 @@ public class User {
     private String name;
     private String email;
     private String password;
-//    private LocalDateTime registrationDate;
-//    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-//    private List<Expense> expenses;
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<Expense> expenses;
 }

@@ -65,6 +65,7 @@ public class UserController {
             userObj.setName(user.getName());
             userObj.setEmail(user.getEmail());
             userObj.setPassword(user.getPassword());
+            userObj.setExpenses(user.getExpenses());
             User userData = userRepo.save(userObj);
             return new ResponseEntity<>(userData, HttpStatus.OK);
         }
