@@ -19,6 +19,7 @@ public class Income {
     private Long id;
     private double amount;
     private String source;
+    private LocalDateTime date;
 
     @ManyToOne
     @JoinColumn(name = "user_id")

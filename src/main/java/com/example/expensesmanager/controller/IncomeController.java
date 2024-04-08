@@ -65,6 +65,7 @@ public class IncomeController {
             Income incomeObj = oldIncomeData.get();
             incomeObj.setAmount(income.getAmount());
             incomeObj.setSource(income.getSource());
+            incomeObj.setDate(income.getDate());
             incomeObj.setUser(income.getUser());
 
             return new ResponseEntity<>(incomeRepo.save(incomeObj), HttpStatus.OK);
