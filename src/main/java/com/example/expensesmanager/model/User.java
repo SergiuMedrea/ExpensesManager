@@ -7,7 +7,10 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
-@Table(name = "Users")
+@Table(name = "Users", uniqueConstraints = {
+    @UniqueConstraint(columnNames = "email"),
+    @UniqueConstraint(columnNames = "name"),
+    @UniqueConstraint(columnNames = "password")})
 @NoArgsConstructor
 @AllArgsConstructor
 @Setter

@@ -51,9 +51,13 @@ public class UserController {
     }
 
     @PostMapping("/addUser")
-    public ResponseEntity<User> addUser(@RequestBody User user) {
+    public ResponseEntity<?> addUser(@RequestBody User user) {
+        if (userRepo.existsByName(user.getName()) ||
+                userRepo.existsByEmail(user.getEmail()) ||
+                userRepo.existsByPassword(user.getPassword())) {
+            return ResponseEntity.status(HttpStatus.CONFLICT).body("User already exists");
+        }
         User userObj = userRepo.save(user);
-
         return new ResponseEntity<>(userObj, HttpStatus.OK);
     }
 
@@ -71,5 +75,18 @@ public class UserController {
             return new ResponseEntity<>(userData, HttpStatus.OK);
         }
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
+
+    @PostMapping("/verifyUser")
+    public ResponseEntity<?> verifyUser(@RequestBody User user) {
+        User existingUser = userRepo.findByEmail(user.getEmail());
+        if (existingUser == null) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("User not found");
+        } else {
+            if (!existingUser.getPassword().equals(user.getPassword())) {
+                return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Incorrect password");
+            }
+            return new ResponseEntity<>(HttpStatus.OK);
+        }
     }
 }
