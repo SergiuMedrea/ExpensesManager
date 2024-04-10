@@ -2,8 +2,6 @@ package com.example.expensesmanager.model;
 
 import jakarta.persistence.*;
 import lombok.*;
-
-import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
@@ -24,5 +22,5 @@ public class User {
     private String email;
     private String password;
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-    private List<Expense> expenses;
+    private List<Transaction> transactions;
 }

@@ -70,7 +70,7 @@ public class UserController {
             userObj.setName(user.getName());
             userObj.setEmail(user.getEmail());
             userObj.setPassword(user.getPassword());
-            userObj.setExpenses(user.getExpenses());
+            userObj.setTransactions(user.getTransactions());
             User userData = userRepo.save(userObj);
             return new ResponseEntity<>(userData, HttpStatus.OK);
         }
@@ -86,7 +86,7 @@ public class UserController {
             if (!existingUser.getPassword().equals(user.getPassword())) {
                 return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Incorrect password");
             }
-            return new ResponseEntity<>(HttpStatus.OK);
+            return new ResponseEntity<>(existingUser.getId(), HttpStatus.OK);
         }
     }
 }
